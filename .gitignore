@@ -1,0 +1,6 @@
+.pytest_cache
+.test-runs
+app/__pycache__
+app/services/__pycache__
+tests/__pycache__
+venv
