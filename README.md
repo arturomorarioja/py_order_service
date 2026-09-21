@@ -1,6 +1,12 @@
 # Orders
 Example of narrow vs. broad integration tests based on the backend for an eshop's ordering system.
 
+## Class Diagram
+
+![Class Diagram](img/class_diagram.png)
+
+## Testing Strategy
+
 Although the backend offers an API (`POST /orders`, `GET /orders/{id}`, `GET /invoices/{id}`), the integration tests test the classes' public methods directly.
 
 The broad integration tests test the interaction of the order service with the stock, payment, and invoice services.
