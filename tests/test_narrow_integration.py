@@ -51,8 +51,8 @@ def test_narrow_order_to_invoice_happy_path_issues_the_invoice(service_bundle_fa
     }
 
     # Mocked collaborators are called at the integration boundary.
-    # The following lines are shown for didactic purposes only.
-    # Avoid including them in production
+    # Pytest does not have a verify() functionality to check on test doubles' behaviour,
+    # so assertions must be used
     mocked_stock.get_product.assert_called_once_with(sku)
     mocked_stock.reserve.assert_called_once_with(result["order_id"], sku, quantity)
     mocked_payment.charge.assert_called_once_with(
@@ -115,8 +115,8 @@ def test_narrow_does_not_invoice_when_mocked_stock_rejects_the_order(service_bun
     }
 
     # Downstream mocked collaborators are not called after stock rejection.
-    # The following lines are shown for didactic purposes only.
-    # Avoid including them in production
+    # Pytest does not have a verify() functionality to check on test doubles' behaviour,
+    # so assertions must be used
     mocked_stock.reserve.assert_called_once_with(result["order_id"], sku, quantity)
     mocked_payment.charge.assert_not_called()
 
@@ -180,7 +180,7 @@ def test_narrow_does_not_invoice_when_mocked_payment_declines(service_bundle_fac
     }
 
     # The stock reservation is released and no invoice is issued.
-    # The following lines are shown for didactic purposes only.
-    # Avoid including them in production
+    # Pytest does not have a verify() functionality to check on test doubles' behaviour,
+    # so assertions must be used
     mocked_stock.release.assert_called_once_with(result["order_id"])
     assert order["invoice_id"] is None
